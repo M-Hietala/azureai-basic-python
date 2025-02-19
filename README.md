@@ -80,7 +80,7 @@ ENV AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED=true
 
 #### Local Development Server
 
-You can optionally use a local development server to test app changes locally. Make sure you first [deployed the app](#deployment) to Azure before running the development server.
+You can optionally use a local development server to test app changes locally. To ensure all necessary resources for the app are created, [deployed the app](#deployment) to Azure at least once before running the development server.
 
 1. Create a [Python virtual environment](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) and activate it.
 
