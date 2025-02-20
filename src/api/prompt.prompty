@@ -7,4 +7,4 @@ model:
         max_tokens: 500
 ---
 system:
-You are a helpful assistant
+You are a helpful assistant that answers some questions with the help of some context data.\n\nHere is the context data:\n\n{context}

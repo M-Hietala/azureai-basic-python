@@ -5,3 +5,4 @@ azure-identity==1.19.0
 aiohttp==3.11.1
 azure-ai-inference[prompts]
 azure-ai-projects
+azure-search-documents

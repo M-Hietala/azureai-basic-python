@@ -78,6 +78,30 @@ To enable message contents to be included in the traces, set the following envir
 ENV AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED=true
 ```
 
+#### RAG model
+The source code comes with the data set about hiking products as an example. It consists of `.md` files, containing descriptions of the products. To build the RAG model, we split the data by sentences and build pairs of embeddings and corresponding contexts. This can be done by calling the code
+```python
+rag = RAGHelper(
+    endpoint=self.search_endpoint,
+    credential=your_credentials,
+    index_name=index_name,
+    dimensions=100,
+    model="text-embedding-3-small",
+    embeddings_client=embedding_client,
+)
+await rag.build_embeddings_file(
+    input_directory='data',
+    output_file='data/embeddings.csv'
+)
+```
+We have also included the `embeddings.csv` into the data directory, it was obtained by using `text-embedding-3-small` model with dimensions equals to 100.
+For each question asked from the application, we first search the answer in vector store and if the answer was found, we return the response based on data provided in the data set. To run the application locally with RAG model, please provide the next environmet variables:
+```
+AZURE_AI_SEARCH_INDEX_NAME=index_sample
+AZURE_AI_EMBED_DEPLOYMENT_NAME=text-embedding-3-small
+```
+If these variables were not set, or there is no Azure AI Search connection, RAG search will not be used.
+
 #### Local Development Server
 
 You can optionally use a local development server to test app changes locally. Make sure you first [deployed the app](#deployment) to Azure before running the development server.
